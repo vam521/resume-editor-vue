@@ -144,6 +144,11 @@ const handleSettings = () => {
   overflow: hidden;
 }
 
+.edit-panel :deep(.el-tabs__content) {
+  flex: 1;
+  overflow: auto;
+}
+
 .edit-tabs {
   height: 100%;
   display: flex;
@@ -153,6 +158,11 @@ const handleSettings = () => {
 :deep(.el-tabs__content) {
   flex: 1;
   overflow-y: auto;
+  padding: 0;
+}
+
+:deep(.el-tab-pane) {
+  height: 100%;
 }
 
 .preview-panel {

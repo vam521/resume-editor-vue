@@ -96,6 +96,7 @@ import Underline from '@tiptap/extension-underline'
 import TextAlign from '@tiptap/extension-text-align'
 import Typography from '@tiptap/extension-typography'
 import Placeholder from '@tiptap/extension-placeholder'
+import CharacterCount from '@tiptap/extension-character-count'
 
 
 const props = defineProps<{
@@ -121,6 +122,7 @@ const editor = useEditor({
     Placeholder.configure({
       placeholder: props.placeholder || '请输入内容...',
     }),
+    CharacterCount,
   ],
   onUpdate: ({ editor }) => {
     const html = editor.getHTML()
@@ -204,6 +206,25 @@ onUnmounted(() => {
 .tiptap-editor {
   min-height: 120px;
   outline: none;
+}
+
+.tiptap-editor :deep(.ProseMirror) {
+  min-height: 100px;
+  padding: 8px;
+  outline: none;
+  cursor: text;
+}
+
+.tiptap-editor :deep(.ProseMirror:focus) {
+  outline: none;
+}
+
+.tiptap-editor :deep(.ProseMirror p.is-editor-empty:first-child::before) {
+  content: attr(data-placeholder);
+  float: left;
+  color: #adb5bd;
+  pointer-events: none;
+  height: 0;
 }
 
 .tiptap-editor :deep(p) {

@@ -97,7 +97,7 @@ const settings = reactive({
   orientation: 'portrait',
   margin: 10,
   fileName: '',
-  imageQuality: 0.8
+  imageQuality: 1.0
 })
 
 const getPageDimensions = () => {
@@ -124,7 +124,7 @@ const handleExport = async () => {
     }
 
     const canvas = await html2canvas(previewComponent, {
-      scale: 2,
+      scale: 4,
       useCORS: true,
       logging: false,
       backgroundColor: '#ffffff',

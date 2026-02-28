@@ -306,7 +306,7 @@ defineExpose({
 .modern-template .work-header h3,
 .modern-template .project-header h3 {
   margin: 0;
-  font-size: 14px;
+  font-size: 15px;
   color: #303133;
 }
 
@@ -314,7 +314,7 @@ defineExpose({
 .modern-template .work-date,
 .modern-template .project-date {
   color: #909399;
-  font-size: 12px;
+  font-size: 13px;
 }
 
 .modern-template .education-details,
@@ -322,14 +322,14 @@ defineExpose({
 .modern-template .project-role {
   color: #606266;
   margin-bottom: 4px;
-  font-size: 12px;
+  font-size: 13px;
 }
 
 .modern-template .education-description,
 .modern-template .work-description,
 .modern-template .project-description {
   color: #606266;
-  font-size: 12px;
+  font-size: 13px;
 }
 
 .modern-template .project-technologies {
@@ -370,6 +370,7 @@ defineExpose({
 .modern-template .summary-content {
   color: #606266;
   line-height: 1.8;
+  font-size: 13px;
 }
 
 /* 经典模板样式 */

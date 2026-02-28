@@ -49,7 +49,7 @@
             <div v-show="!collapsedSections[section.id]" class="section-content">
               <!-- 个人信息表单 -->
               <div v-if="section.type === 'personal'" class="personal-form">
-                <el-form :model="section.content" label-width="80px" size="small">
+                <el-form :model="section.content" label-width="100px">
                   <el-form-item label="姓名">
                     <el-input v-model="section.content.name" placeholder="请输入姓名" />
                   </el-form-item>
@@ -538,139 +538,298 @@ const fillSampleData = () => {
   height: 100%;
   display: flex;
   flex-direction: column;
+  background: #fff;
 }
 
 .editor-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 16px;
-  border-bottom: 1px solid #ebeef5;
+  padding: 16px 20px;
+  border-bottom: 1px solid #f0f0f0;
+  background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
 }
 
 .editor-header h3 {
   margin: 0;
-  font-size: 15px;
+  font-size: 16px;
+  font-weight: 600;
   color: #303133;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.editor-header h3::before {
+  content: '';
+  display: inline-block;
+  width: 4px;
+  height: 18px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 2px;
+}
+
+.editor-header .el-button {
+  border-radius: 6px;
+  font-weight: 500;
+}
+
+.editor-header .el-button--primary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: none;
+}
+
+.editor-header .el-button--primary:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
 }
 
 .sections-container {
   flex: 1;
   overflow-y: auto;
-  padding: 12px;
+  padding: 20px;
+  background: #f8f9fa;
 }
 
 .section-item {
-  margin-bottom: 12px;
-  border: 1px solid #ebeef5;
-  border-radius: 4px;
+  margin-bottom: 16px;
+  border: 1px solid #e8e8e8;
+  border-radius: 12px;
   overflow: hidden;
+  background: white;
+  transition: all 0.3s ease;
+}
+
+.section-item:hover {
+  border-color: #d4c4ed;
+  box-shadow: 0 4px 20px rgba(102, 126, 234, 0.12);
 }
 
 .section-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 12px;
-  background-color: #f5f7fa;
+  padding: 14px 20px;
+  background: linear-gradient(135deg, #f8f9fa 0%, #fff 100%);
   cursor: pointer;
+  border-bottom: 1px solid #f0f0f0;
 }
 
 .section-title {
   margin: 0;
   display: flex;
   align-items: center;
-  gap: 8px;
-  font-size: 14px;
+  gap: 10px;
+  font-size: 15px;
+  font-weight: 600;
   color: #303133;
 }
 
 .drag-handle {
   cursor: move;
+  color: #b0b0b0;
+  font-size: 16px;
+  transition: color 0.2s;
+}
+
+.drag-handle:hover {
+  color: #667eea;
 }
 
 .section-actions {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 12px;
+}
+
+.section-actions .el-button {
+  border-radius: 6px;
+}
+
+.section-actions .el-button--danger {
+  color: #f56c6c;
+}
+
+.section-actions .el-button--danger:hover {
+  background: #fef0f0;
 }
 
 .collapse-icon {
   cursor: pointer;
-  color: #909399;
+  color: #b0b0b0;
+  transition: all 0.2s;
+  font-size: 14px;
+}
+
+.collapse-icon:hover {
+  color: #667eea;
+  transform: rotate(180deg);
 }
 
 .section-content {
-  padding: 12px;
+  padding: 28px;
+}
+
+.personal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
 }
 
 .personal-form .el-form-item {
-  margin-bottom: 12px;
+  margin-bottom: 0;
+  display: flex;
+  align-items: center;
 }
 
-.personal-form .el-form-item .el-form-item__label {
-  font-size: 13px;
+.personal-form .el-form-item__label {
+  font-size: 15px;
+  font-weight: 500;
+  color: #505050;
+  padding-bottom: 0;
+  min-width: 100px;
+  line-height: 32px;
+}
+
+.personal-form .el-form-item__content {
+  flex: 1;
+  margin-left: 0 !important;
+  line-height: 32px;
+}
+
+.personal-form .el-input__wrapper {
+  border-radius: 8px;
+  padding: 6px 14px;
+  height: 36px;
 }
 
 .personal-form .el-input {
-  font-size: 13px;
+  font-size: 15px;
 }
 
 .list-editor {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 16px;
 }
 
 .list-item {
-  padding: 12px;
-  border: 1px solid #ebeef5;
-  border-radius: 4px;
-  background-color: #fafafa;
+  padding: 16px;
+  border: 1px solid #e8e8e8;
+  border-radius: 10px;
+  background: #fafbfc;
+  transition: all 0.2s ease;
 }
 
-.list-item .el-form-item {
-  margin-bottom: 10px;
-}
-
-.list-item .el-form-item__label {
-  font-size: 12px;
+.list-item:hover {
+  border-color: #d4c4ed;
+  background: #fff;
+  box-shadow: 0 2px 12px rgba(102, 126, 234, 0.08);
 }
 
 .list-item-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 8px;
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px dashed #e8e8e8;
 }
 
 .list-item-header h5 {
   margin: 0;
+  font-size: 14px;
+  font-weight: 600;
   color: #303133;
+}
+
+.list-item .el-form-item {
+  margin-bottom: 14px;
+}
+
+.list-item .el-form-item__label {
+  font-size: 12px;
+  font-weight: 500;
+  color: #909399;
+  padding-bottom: 4px;
+}
+
+.list-item .el-select,
+.list-item .el-date-editor {
+  width: 100%;
+}
+
+.list-item .el-input__wrapper {
+  border-radius: 6px;
 }
 
 .tech-tag,
 .skill-tag {
   margin-right: 8px;
   margin-bottom: 8px;
+  border-radius: 4px;
+  border: none;
+  background: linear-gradient(135deg, #667eea20 0%, #764ba220 100%);
+  color: #667eea;
+  font-weight: 500;
 }
 
 .tech-input,
 .skill-input {
-  width: 120px;
+  width: 140px;
   margin-right: 8px;
 }
 
 .add-list-item {
   margin-top: 8px;
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 2px dashed #e0e0e0;
+  background: transparent;
+  color: #909399;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.add-list-item:hover {
+  border-color: #667eea;
+  color: #667eea;
+  background: rgba(102, 126, 234, 0.05);
 }
 
 .rich-text-editor {
-  min-height: 200px;
+  min-height: 180px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid #e8e8e8;
+}
+
+.rich-text-editor:hover {
+  border-color: #d4c4ed;
 }
 
 .ghost {
-  opacity: 0.5;
-  background: #c8ebfb;
+  opacity: 0.6;
+  background: linear-gradient(135deg, #667eea20 0%, #764ba220 100%);
+  border-color: #667eea;
+}
+
+/* 空状态样式 */
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: #909399;
+}
+
+.empty-state .el-icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+  color: #d0d0d0;
+}
+
+.empty-state p {
+  margin: 0;
+  font-size: 14px;
 }
 </style>

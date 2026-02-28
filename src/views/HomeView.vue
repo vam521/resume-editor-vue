@@ -105,24 +105,32 @@ const handleSettings = () => {
   display: flex;
   flex-direction: column;
   height: 100vh;
-  background-color: #f5f7fa;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background-size: cover;
 }
 
 .header {
-  padding: 20px;
+  padding: 20px 40px;
   text-align: center;
-  background-color: white;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
 }
 
 .header h1 {
   margin: 0;
-  color: #409eff;
+  font-size: 28px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 700;
 }
 
 .header p {
-  margin: 10px 0 0;
+  margin: 8px 0 0;
   color: #666;
+  font-size: 14px;
 }
 
 .main-content {
@@ -136,74 +144,100 @@ const handleSettings = () => {
 .edit-panel {
   flex: 1;
   min-width: 400px;
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.98);
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
   display: flex;
   flex-direction: column;
   overflow: hidden;
-}
-
-.edit-panel :deep(.el-tabs__content) {
-  flex: 1;
-  overflow: auto;
+  backdrop-filter: blur(10px);
 }
 
 .edit-tabs {
   height: 100%;
   display: flex;
   flex-direction: column;
+  border: none;
+  box-shadow: none;
 }
 
-:deep(.el-tabs__content) {
+.edit-tabs :deep(.el-tabs__header) {
+  background: #fafafa;
+  margin: 0;
+  border-bottom: 1px solid #eee;
+}
+
+.edit-tabs :deep(.el-tabs__nav-wrap::after) {
+  display: none;
+}
+
+.edit-tabs :deep(.el-tabs__item) {
+  height: 50px;
+  line-height: 50px;
+  font-size: 14px;
+  padding: 0 24px;
+}
+
+.edit-tabs :deep(.el-tabs__content) {
   flex: 1;
   overflow-y: auto;
   padding: 0;
 }
 
-:deep(.el-tab-pane) {
+.edit-tabs :deep(.el-tab-pane) {
   height: 100%;
 }
 
 .preview-panel {
   flex: 1;
   min-width: 400px;
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.98);
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  backdrop-filter: blur(10px);
 }
 
 .preview-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 16px 20px;
-  border-bottom: 1px solid #ebeef5;
+  padding: 16px 24px;
+  border-bottom: 1px solid #eee;
+  background: #fafafa;
 }
 
 .preview-header h3 {
   margin: 0;
   color: #303133;
+  font-size: 16px;
+  font-weight: 600;
 }
 
 .preview-actions {
   display: flex;
-  gap: 10px;
+  gap: 12px;
+}
+
+.preview-actions .el-button {
+  padding: 10px 20px;
+  border-radius: 6px;
 }
 
 .preview-container {
   flex: 1;
   padding: 20px;
   overflow: auto;
+  background: #f5f7fa;
 }
 
 .footer {
-  padding: 16px 20px;
-  background-color: white;
-  border-top: 1px solid #ebeef5;
+  padding: 14px 40px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -211,12 +245,40 @@ const handleSettings = () => {
 
 .footer-actions {
   display: flex;
-  gap: 10px;
+  gap: 12px;
+}
+
+.footer-actions .el-button {
+  border-radius: 6px;
+  padding: 10px 18px;
 }
 
 .footer-info {
   color: #909399;
-  font-size: 14px;
+  font-size: 13px;
+}
+
+.footer-info::before {
+  content: '';
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background: #67c23a;
+  border-radius: 50%;
+  margin-right: 8px;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 @media (max-width: 1024px) {
@@ -227,6 +289,16 @@ const handleSettings = () => {
   .edit-panel,
   .preview-panel {
     min-width: auto;
+  }
+  
+  .header {
+    padding: 16px 20px;
+  }
+  
+  .footer {
+    flex-direction: column;
+    gap: 12px;
+    padding: 12px 20px;
   }
 }
 </style>

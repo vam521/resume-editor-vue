@@ -133,59 +133,69 @@ const getIndustryLabel = (industry: string) => {
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #eee;
 }
 
 .template-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   gap: 16px;
   margin-bottom: 20px;
 }
 
 .template-card {
   cursor: pointer;
-  transition: all 0.3s;
+  transition: all 0.3s ease;
   border: 2px solid transparent;
+  border-radius: 10px;
+  overflow: hidden;
 }
 
 .template-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  transform: translateY(-6px);
+  box-shadow: 0 8px 25px rgba(64, 158, 255, 0.2);
 }
 
 .template-card.selected {
   border-color: #409eff;
+  box-shadow: 0 4px 16px rgba(64, 158, 255, 0.3);
 }
 
 .template-thumbnail {
-  height: 160px;
-  background-color: #f5f7fa;
+  height: 140px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 4px;
-  margin-bottom: 12px;
+  border-radius: 8px 8px 0 0;
 }
 
 .thumbnail-placeholder {
   text-align: center;
-  color: #909399;
+  color: white;
 }
 
 .thumbnail-text {
   display: block;
   margin-top: 8px;
   font-size: 14px;
+  font-weight: 500;
+}
+
+.template-info {
+  padding: 12px;
 }
 
 .template-info h4 {
-  margin: 0 0 8px 0;
-  font-size: 16px;
+  margin: 0 0 6px 0;
+  font-size: 14px;
+  font-weight: 600;
   color: #303133;
 }
 
 .template-description {
-  margin: 0 0 12px 0;
+  margin: 0 0 10px 0;
   font-size: 12px;
   color: #909399;
   line-height: 1.4;
@@ -193,24 +203,36 @@ const getIndustryLabel = (industry: string) => {
 
 .template-tags {
   display: flex;
-  gap: 8px;
+  gap: 6px;
 }
 
 .selected-template-info {
-  padding: 16px;
-  background-color: #f0f9ff;
-  border-radius: 4px;
-  border-left: 4px solid #409eff;
+  padding: 16px 20px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 10px;
+  color: white;
 }
 
 .selected-template-info h4 {
-  margin: 0 0 8px 0;
-  color: #303133;
+  margin: 0 0 6px 0;
+  font-size: 15px;
+  font-weight: 600;
 }
 
 .selected-template-info p {
   margin: 0 0 12px 0;
-  color: #606266;
-  font-size: 14px;
+  font-size: 13px;
+  opacity: 0.9;
+}
+
+.selected-template-info .el-button {
+  background: white;
+  color: #667eea;
+  border: none;
+  font-weight: 500;
+}
+
+.selected-template-info .el-button:hover {
+  background: #f0f0f0;
 }
 </style>

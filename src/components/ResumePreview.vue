@@ -245,7 +245,8 @@ defineExpose({
   padding: 20px 30px;
   max-width: 800px;
   margin: 0 auto;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
 }
 
 /* 现代模板样式 */

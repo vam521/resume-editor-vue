@@ -243,23 +243,34 @@ defineExpose({
   padding: 20px;
 }
 
+.export-settings .el-form-item__label {
+  font-weight: 500;
+}
+
+.export-settings .el-button {
+  border-radius: 6px;
+  padding: 10px 20px;
+}
+
 .export-tips {
-  margin-top: 30px;
-  padding: 16px;
-  background-color: #f0f9ff;
-  border-radius: 4px;
-  border-left: 4px solid #409eff;
+  margin-top: 24px;
+  padding: 16px 20px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 10px;
+  color: white;
 }
 
 .export-tips h4 {
   margin: 0 0 12px 0;
-  color: #303133;
+  font-size: 14px;
+  font-weight: 600;
 }
 
 .export-tips ul {
   margin: 0;
   padding-left: 20px;
-  color: #606266;
+  font-size: 13px;
+  opacity: 0.9;
 }
 
 .export-tips li {

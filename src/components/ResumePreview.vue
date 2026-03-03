@@ -397,6 +397,10 @@ defineExpose({
   line-height: 1.6;
 }
 
+.modern-template .work-description {
+  padding-left: 10px;
+}
+
 .modern-template .project-technologies {
   margin-top: 8px;
   padding-top: 8px;

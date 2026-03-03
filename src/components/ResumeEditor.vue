@@ -96,22 +96,16 @@
                         <el-input v-model="item.major" placeholder="请输入专业" />
                       </el-form-item>
                       <el-form-item label="学历">
-                        <el-select v-model="item.degree" placeholder="请选择学历">
-                          <el-option label="博士" value="doctor" />
-                          <el-option label="硕士" value="master" />
-                          <el-option label="本科" value="bachelor" />
-                          <el-option label="大专" value="associate" />
-                          <el-option label="高中" value="highschool" />
-                        </el-select>
+                        <el-input v-model="item.degree" placeholder="请输入学历" />
                       </el-form-item>
                       <el-form-item label="时间">
                         <el-date-picker
                           v-model="item.dateRange"
-                          type="daterange"
+                          type="monthrange"
                           range-separator="至"
                           start-placeholder="开始日期"
                           end-placeholder="结束日期"
-                          value-format="YYYY-MM-DD"
+                          value-format="YYYY-MM"
                         />
                       </el-form-item>
                       <el-form-item label="描述">
@@ -129,11 +123,11 @@
                       <el-form-item label="时间">
                         <el-date-picker
                           v-model="item.dateRange"
-                          type="daterange"
+                          type="monthrange"
                           range-separator="至"
                           start-placeholder="开始日期"
                           end-placeholder="结束日期"
-                          value-format="YYYY-MM-DD"
+                          value-format="YYYY-MM"
                         />
                       </el-form-item>
                       <el-form-item label="工作描述">
@@ -151,11 +145,11 @@
                       <el-form-item label="时间">
                         <el-date-picker
                           v-model="item.dateRange"
-                          type="daterange"
+                          type="monthrange"
                           range-separator="至"
                           start-placeholder="开始日期"
                           end-placeholder="结束日期"
-                          value-format="YYYY-MM-DD"
+                          value-format="YYYY-MM"
                         />
                       </el-form-item>
                       <el-form-item label="项目描述">

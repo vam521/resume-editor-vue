@@ -124,7 +124,7 @@ const handleExport = async () => {
     }
 
     const canvas = await html2canvas(previewComponent, {
-      scale: 4,
+      scale: 6,
       useCORS: true,
       logging: false,
       backgroundColor: '#ffffff',

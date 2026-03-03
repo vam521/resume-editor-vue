@@ -236,29 +236,33 @@ defineExpose({
   background-color: white;
   color: #333;
   font-family: 'Microsoft YaHei', 'Segoe UI', sans-serif;
-  line-height: 1.6;
+  line-height: 1.5;
   min-height: 100%;
 }
 
 .resume-page {
-  padding: 20px 30px;
+  padding: 30px;
   max-width: 800px;
   margin: 0 auto;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
   border-radius: 4px;
 }
 
 /* 现代模板样式 */
 .modern-template .modern-header {
-  padding-bottom: 12px;
-  margin-bottom: 16px;
-  border-bottom: 2px solid #409eff;
+  padding-bottom: 16px;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #667eea;
+  background: linear-gradient(135deg, #667eea08 0%, #764ba208 100%);
+  padding: 16px 24px;
+  margin: -30px -30px 20px -30px;
+  border-radius: 4px 4px 0 0;
 }
 
 .modern-template .personal-info {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 16px;
   justify-content: flex-end;
   text-align: right;
 }
@@ -273,24 +277,26 @@ defineExpose({
 }
 
 .modern-template .personal-info .avatar {
-  width: 80px;
-  height: 80px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
   object-fit: cover;
-  border: 3px solid #fff;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+  border: 3px solid white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
 }
 
 .modern-template .personal-info h1 {
   margin: 0 0 6px 0;
   font-size: 24px;
+  font-weight: 700;
   color: #303133;
+  letter-spacing: 1px;
 }
 
 .modern-template .contact-info {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 10px;
   color: #606266;
   font-size: 12px;
 }
@@ -299,24 +305,51 @@ defineExpose({
   display: flex;
   align-items: center;
   gap: 4px;
+  background: #f5f7fa;
+  padding: 2px 8px;
+  border-radius: 12px;
+}
+
+.modern-template .contact-info .el-icon {
+  color: #667eea;
+  font-weight: 600;
 }
 
 .modern-template .modern-section {
-  margin-bottom: 14px;
+  margin-bottom: 16px;
 }
 
 .modern-template .section-title {
   font-size: 15px;
-  color: #409eff;
-  margin: 0 0 8px 0;
-  padding-bottom: 4px;
-  border-bottom: 1px solid #e4e7ed;
+  font-weight: 600;
+  color: #667eea;
+  margin: 0 0 12px 0;
+  padding-bottom: 6px;
+  border-bottom: 1px solid #e8e8e8;
+  position: relative;
+  padding-left: 16px;
+}
+
+.modern-template .section-title::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 16px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 2px;
 }
 
 .modern-template .education-item,
 .modern-template .work-item,
 .modern-template .project-item {
-  margin-bottom: 10px;
+  margin-bottom: 12px;
+  padding: 12px;
+  background: #fafbfc;
+  border-radius: 6px;
+  border-left: 3px solid #667eea;
 }
 
 .modern-template .education-header,
@@ -325,62 +358,81 @@ defineExpose({
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  margin-bottom: 2px;
+  margin-bottom: 4px;
 }
 
 .modern-template .education-header h3,
 .modern-template .work-header h3,
 .modern-template .project-header h3 {
   margin: 0;
-  font-size: 15px;
+  font-size: 14px;
+  font-weight: 600;
   color: #303133;
 }
 
 .modern-template .education-date,
 .modern-template .work-date,
 .modern-template .project-date {
-  color: #909399;
-  font-size: 13px;
+  color: #667eea;
+  font-size: 12px;
+  font-weight: 500;
+  background: #f0f4ff;
+  padding: 1px 8px;
+  border-radius: 10px;
 }
 
 .modern-template .education-details,
 .modern-template .work-position,
 .modern-template .project-role {
   color: #606266;
-  margin-bottom: 4px;
+  margin-bottom: 6px;
   font-size: 13px;
 }
 
 .modern-template .education-description,
 .modern-template .work-description,
 .modern-template .project-description {
-  color: #606266;
-  font-size: 13px;
+  color: #505050;
+  font-size: 12px;
+  line-height: 1.6;
 }
 
 .modern-template .project-technologies {
-  margin-top: 4px;
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px dashed #e8e8e8;
 }
 
 .modern-template .tech-label {
   font-size: 12px;
   color: #909399;
   margin-right: 6px;
+  font-weight: 500;
 }
 
 .modern-template .tech-tag {
   margin-right: 6px;
   margin-bottom: 4px;
+  border-radius: 4px;
+  background: linear-gradient(135deg, #667eea20 0%, #764ba220 100%);
+  color: #667eea;
+  border: none;
+  font-size: 11px;
+  font-weight: 500;
 }
 
 .modern-template .skill-group {
-  margin-bottom: 12px;
+  margin-bottom: 10px;
+  padding: 10px;
+  background: #fafbfc;
+  border-radius: 6px;
 }
 
 .modern-template .skill-group h3 {
   margin: 0 0 6px 0;
-  font-size: 14px;
-  color: #303133;
+  font-size: 13px;
+  font-weight: 600;
+  color: #667eea;
 }
 
 .modern-template .skill-tags {
@@ -391,12 +443,23 @@ defineExpose({
 
 .modern-template .skill-tag {
   margin: 0;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 2px 10px;
+  font-size: 11px;
+  font-weight: 500;
 }
 
 .modern-template .summary-content {
-  color: #606266;
-  line-height: 1.8;
+  color: #505050;
+  line-height: 1.7;
   font-size: 13px;
+  padding: 12px;
+  background: linear-gradient(135deg, #667eea08 0%, #764ba208 100%);
+  border-radius: 6px;
+  border-left: 3px solid #667eea;
 }
 
 /* 经典模板样式 */

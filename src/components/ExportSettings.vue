@@ -95,7 +95,7 @@ const settings = reactive({
   format: 'pdf',
   pageSize: 'a4',
   orientation: 'portrait',
-  margin: 10,
+  margin: 5,
   fileName: '',
   imageQuality: 1.0
 })

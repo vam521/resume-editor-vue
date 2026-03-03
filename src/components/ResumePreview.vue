@@ -287,7 +287,7 @@ defineExpose({
 
 .modern-template .personal-info h1 {
   margin: 0 0 6px 0;
-  font-size: 24px;
+  font-size: 26px;
   font-weight: 700;
   color: #303133;
   letter-spacing: 1px;
@@ -298,7 +298,7 @@ defineExpose({
   flex-wrap: wrap;
   gap: 10px;
   color: #606266;
-  font-size: 12px;
+  font-size: 13px;
 }
 
 .modern-template .contact-info span {
@@ -365,7 +365,7 @@ defineExpose({
 .modern-template .work-header h3,
 .modern-template .project-header h3 {
   margin: 0;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 600;
   color: #303133;
 }
@@ -374,7 +374,7 @@ defineExpose({
 .modern-template .work-date,
 .modern-template .project-date {
   color: #667eea;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 500;
   background: #f0f4ff;
   padding: 1px 8px;
@@ -393,7 +393,7 @@ defineExpose({
 .modern-template .work-description,
 .modern-template .project-description {
   color: #505050;
-  font-size: 12px;
+  font-size: 13px;
   line-height: 1.6;
 }
 
@@ -404,7 +404,7 @@ defineExpose({
 }
 
 .modern-template .tech-label {
-  font-size: 12px;
+  font-size: 13px;
   color: #909399;
   margin-right: 6px;
   font-weight: 500;
@@ -483,7 +483,7 @@ defineExpose({
   flex-wrap: wrap;
   gap: 12px;
   color: #606266;
-  font-size: 12px;
+  font-size: 13px;
 }
 
 .classic-template .contact-item {

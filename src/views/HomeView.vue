@@ -102,11 +102,47 @@ const handleNew = () => {
 }
 
 const handleImport = () => {
-  // 导入数据逻辑
+  const input = document.createElement('input')
+  input.type = 'file'
+  input.accept = '.json'
+  input.onchange = (e: any) => {
+    const file = e.target.files[0]
+    if (file) {
+      const reader = new FileReader()
+      reader.onload = (event) => {
+        try {
+          const data = JSON.parse(event.target?.result as string)
+          if (data.template) resumeStore.selectTemplate(data.template)
+          if (data.sections) {
+            data.sections.forEach((section: any) => {
+              resumeStore.updateSectionContent(section.id, section.content)
+            })
+          }
+          ElMessage.success('数据导入成功')
+        } catch (error) {
+          ElMessage.error('导入失败，请检查文件格式')
+        }
+      }
+      reader.readAsText(file)
+    }
+  }
+  input.click()
 }
 
 const handleExportData = () => {
-  // 导出数据逻辑
+  const data = {
+    template: resumeStore.selectedTemplate,
+    sections: resumeStore.sections,
+    exportedAt: new Date().toISOString()
+  }
+  const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' })
+  const url = URL.createObjectURL(blob)
+  const a = document.createElement('a')
+  a.href = url
+  a.download = `简历数据_${new Date().toISOString().slice(0, 10)}.json`
+  a.click()
+  URL.revokeObjectURL(url)
+  ElMessage.success('数据导出成功')
 }
 
 const handleSettings = () => {

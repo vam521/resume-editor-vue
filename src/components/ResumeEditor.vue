@@ -81,7 +81,76 @@
               </div>
 
               <!-- 教育背景、工作经历、项目经验、技能列表 -->
-              <div v-else-if="['education', 'work', 'project', 'skill'].includes(section.type)" class="list-editor">
+              <div v-else-if="section.type === 'project'" class="list-editor">
+                <draggable
+                  v-model="section.content"
+                  v-bind="projectDragOptions"
+                  item-key="index"
+                  handle=".project-drag-handle"
+                  @end="handleProjectDragEnd(section.id)"
+                >
+                  <template #item="{ element: item, index }">
+                    <div class="list-item">
+                      <div class="list-item-header">
+                        <div class="drag-handle-wrapper project-drag-handle">
+                          <el-icon><Rank /></el-icon>
+                        </div>
+                        <h5>{{ getItemTitle(item, section.type) }}</h5>
+                        <el-button size="small" text :icon="Delete" @click="removeListItem(section.id, Number(index))" />
+                      </div>
+                      <el-form :model="item" size="small">
+                        <el-form-item label="项目名称">
+                          <el-input v-model="item.name" placeholder="请输入项目名称" />
+                        </el-form-item>
+                        <el-form-item label="角色">
+                          <el-input v-model="item.role" placeholder="请输入你在项目中的角色" />
+                        </el-form-item>
+                        <el-form-item label="时间">
+                          <el-date-picker
+                            v-model="item.dateRange"
+                            type="monthrange"
+                            range-separator="至"
+                            start-placeholder="开始月份"
+                            end-placeholder="结束月份"
+                            value-format="YYYY-MM"
+                          />
+                        </el-form-item>
+                        <el-form-item label="项目描述">
+                          <RichTextEditor v-model="item.description" />
+                        </el-form-item>
+                        <el-form-item label="技术栈">
+                          <el-tag
+                            v-for="(tech, techIndex) in item.technologies"
+                            :key="techIndex"
+                            class="tech-tag"
+                            closable
+                            @close="removeTech(item, Number(techIndex))"
+                          >
+                            {{ tech }}
+                          </el-tag>
+                          <el-input
+                            v-if="item.techInputVisible"
+                            ref="techInputRef"
+                            v-model="item.techInputValue"
+                            size="small"
+                            class="tech-input"
+                            @keyup.enter="addTech(item)"
+                            @blur="addTech(item)"
+                          />
+                          <el-button v-else size="small" @click="showTechInput(item)">
+                            添加技术
+                          </el-button>
+                        </el-form-item>
+                      </el-form>
+                    </div>
+                  </template>
+                </draggable>
+                <el-button class="add-list-item" :icon="Plus" @click="addListItem(section.id)">
+                  添加项目经验
+                </el-button>
+              </div>
+
+              <div v-else-if="['education', 'work', 'skill'].includes(section.type)" class="list-editor">
                 <div v-for="(item, index) in section.content" :key="index" class="list-item">
                   <div class="list-item-header">
                     <h5>{{ getItemTitle(item, section.type) }}</h5>
@@ -285,12 +354,24 @@ const dragOptions = computed(() => ({
   handle: dragMode.value ? '.drag-handle' : undefined
 }))
 
+const projectDragOptions = {
+  animation: 200,
+  ghostClass: 'ghost'
+}
+
 const toggleDragMode = () => {
   dragMode.value = !dragMode.value
 }
 
 const handleDragEnd = () => {
-  // 拖拽结束后的处理
+  resumeStore.saveDraft()
+}
+
+const handleProjectDragEnd = (sectionId: string) => {
+  const section = resumeStore.sections.find(s => s.id === sectionId)
+  if (section) {
+    resumeStore.updateSectionContent(sectionId, section.content)
+  }
 }
 
 const toggleSectionCollapse = (sectionId: string) => {
@@ -821,6 +902,18 @@ const fillSampleData = () => {
   margin-bottom: 14px;
   padding-bottom: 10px;
   border-bottom: 1px dashed #e8e8e8;
+}
+
+.drag-handle-wrapper {
+  cursor: move;
+  color: #b0b0b0;
+  margin-right: 8px;
+  display: flex;
+  align-items: center;
+}
+
+.drag-handle-wrapper:hover {
+  color: #667eea;
 }
 
 .list-item-header h5 {

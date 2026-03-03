@@ -278,11 +278,11 @@ defineExpose({
 
 .modern-template .personal-info .avatar {
   width: 60px;
-  height: 60px;
-  border-radius: 50%;
+  height: 70px;
+  border-radius: 4px;
   object-fit: cover;
-  border: 3px solid white;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  border: 2px solid #e8e8e8;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .modern-template .personal-info h1 {

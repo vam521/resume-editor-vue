@@ -4,25 +4,28 @@
       <!-- 现代风格模板 -->
       <div v-if="isModernTemplate" class="modern-template">
         <header class="modern-header">
-          <div class="personal-info">
-            <h1>{{ personalInfo.name || '姓名' }}</h1>
-            <div class="contact-info">
-              <span v-if="personalInfo.email">
-                <el-icon><Message /></el-icon>
-                {{ personalInfo.email }}
-              </span>
-              <span v-if="personalInfo.phone">
-                <el-icon><Phone /></el-icon>
-                {{ personalInfo.phone }}
-              </span>
-              <span v-if="personalInfo.location">
-                <el-icon><Location /></el-icon>
-                {{ personalInfo.location }}
-              </span>
-              <span v-if="personalInfo.website">
-                <el-icon><Link /></el-icon>
-                {{ personalInfo.website }}
-              </span>
+          <div class="personal-info" :class="{ 'has-avatar': personalInfo.avatar }">
+            <img v-if="personalInfo.avatar" :src="personalInfo.avatar" class="avatar" />
+            <div class="info-content">
+              <h1>{{ personalInfo.name || '姓名' }}</h1>
+              <div class="contact-info">
+                <span v-if="personalInfo.email">
+                  <el-icon><Message /></el-icon>
+                  {{ personalInfo.email }}
+                </span>
+                <span v-if="personalInfo.phone">
+                  <el-icon><Phone /></el-icon>
+                  {{ personalInfo.phone }}
+                </span>
+                <span v-if="personalInfo.location">
+                  <el-icon><Location /></el-icon>
+                  {{ personalInfo.location }}
+                </span>
+                <span v-if="personalInfo.website">
+                  <el-icon><Link /></el-icon>
+                  {{ personalInfo.website }}
+                </span>
+              </div>
             </div>
           </div>
         </header>
@@ -100,7 +103,7 @@
       </div>
 
       <!-- 经典风格模板 -->
-      <div v-else-if="isClassicTemplate" class="classic-template">
+      <div v-else-if="selectedTemplate?.category === 'classic'" class="classic-template">
         <div class="classic-header">
           <div class="classic-personal">
             <h1>{{ personalInfo.name || '姓名' }}</h1>
@@ -206,10 +209,6 @@ const isModernTemplate = computed(() => {
   return !selectedTemplate.value || selectedTemplate.value.category === 'modern'
 })
 
-const isClassicTemplate = computed(() => {
-  return selectedTemplate.value?.category === 'classic'
-})
-
 
 
 const formatDateRange = (dateRange: any) => {
@@ -254,6 +253,32 @@ defineExpose({
   padding-bottom: 12px;
   margin-bottom: 16px;
   border-bottom: 2px solid #409eff;
+}
+
+.modern-template .personal-info {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  justify-content: flex-end;
+  text-align: right;
+}
+
+.modern-template .personal-info.has-avatar {
+  justify-content: flex-start;
+}
+
+.modern-template .personal-info.has-avatar .info-content {
+  flex: 1;
+  text-align: left;
+}
+
+.modern-template .personal-info .avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #fff;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
 }
 
 .modern-template .personal-info h1 {

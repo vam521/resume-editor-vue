@@ -49,6 +49,18 @@
             <div v-show="!collapsedSections[section.id]" class="section-content">
               <!-- 个人信息表单 -->
               <div v-if="section.type === 'personal'" class="personal-form">
+                <div class="avatar-section">
+                  <el-upload
+                    class="avatar-uploader"
+                    :show-file-list="false"
+                    :before-upload="handleAvatarBeforeUpload"
+                    :http-request="handleAvatarUpload"
+                  >
+                    <img v-if="section.content.avatar" :src="section.content.avatar" class="avatar" />
+                    <el-icon v-else class="avatar-uploader-icon"><Plus /></el-icon>
+                  </el-upload>
+                  <div class="avatar-tip">点击上传头像</div>
+                </div>
                 <el-form :model="section.content" label-width="100px">
                   <el-form-item label="姓名">
                     <el-input v-model="section.content.name" placeholder="请输入姓名" />
@@ -324,6 +336,35 @@ const getSectionTypeLabel = (type: string) => {
     case 'skill': return '技能'
     default: return '项目'
   }
+}
+
+// 头像上传处理
+const handleAvatarBeforeUpload = (file: File) => {
+  const isImage = file.type.startsWith('image/')
+  const isLt2M = file.size / 1024 / 1024 < 2
+  
+  if (!isImage) {
+    ElMessage.error('只能上传图片文件！')
+    return false
+  }
+  if (!isLt2M) {
+    ElMessage.error('图片大小不能超过 2MB！')
+    return false
+  }
+  return true
+}
+
+const handleAvatarUpload = (options: any) => {
+  const { file } = options
+  const reader = new FileReader()
+  reader.onload = (e) => {
+    const personalSection = resumeStore.sections.find(s => s.type === 'personal')
+    if (personalSection) {
+      personalSection.content.avatar = e.target?.result as string
+      resumeStore.updateSectionContent(personalSection.id, personalSection.content)
+    }
+  }
+  reader.readAsDataURL(file)
 }
 
 // 列表项管理
@@ -668,6 +709,58 @@ const fillSampleData = () => {
 
 .section-content {
   padding: 28px;
+}
+
+.personal-form {
+  display: flex;
+  gap: 32px;
+}
+
+.avatar-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 0;
+}
+
+.avatar-uploader {
+  width: 120px;
+  height: 120px;
+  border: 2px dashed #d0d0d0;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: #fafafa;
+}
+
+.avatar-uploader:hover {
+  border-color: #667eea;
+  background: rgba(102, 126, 234, 0.05);
+}
+
+.avatar-uploader .avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.avatar-uploader-icon {
+  font-size: 32px;
+  color: #b0b0b0;
+}
+
+.avatar-tip {
+  margin-top: 12px;
+  font-size: 12px;
+  color: #909399;
+}
+
+.personal-form .el-form {
+  flex: 1;
 }
 
 .personal-form {

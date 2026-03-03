@@ -55,6 +55,9 @@
         <el-button :icon="Setting" @click="handleSettings">
           设置
         </el-button>
+        <el-button type="success" :icon="Refresh" @click="handleSaveDraft">
+          保存草稿
+        </el-button>
       </div>
       <div class="footer-info">
         <span>数据自动保存中...</span>
@@ -64,13 +67,16 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { Download, Refresh, DocumentAdd, Upload, Setting } from '@element-plus/icons-vue'
 import TemplateLibrary from '@/components/TemplateLibrary.vue'
 import ResumeEditor from '@/components/ResumeEditor.vue'
 import ResumePreview from '@/components/ResumePreview.vue'
 import ExportSettings from '@/components/ExportSettings.vue'
+import { useResumeStore } from '@/store/resume'
+import { ElMessage, ElMessageBox } from 'element-plus'
 
+const resumeStore = useResumeStore()
 const exportSettingsRef = ref<InstanceType<typeof ExportSettings> | null>(null)
 
 const handleExport = () => {
@@ -84,7 +90,15 @@ const handleRefresh = () => {
 }
 
 const handleNew = () => {
-  // 新建简历逻辑
+  ElMessageBox.confirm('新建简历将清除当前编辑内容，是否继续？', '新建简历', {
+    confirmButtonText: '确定',
+    cancelButtonText: '取消',
+    type: 'warning'
+  }).then(() => {
+    resumeStore.resetResume()
+    resumeStore.clearDraft()
+    ElMessage.success('已创建新简历')
+  }).catch(() => {})
 }
 
 const handleImport = () => {
@@ -98,6 +112,33 @@ const handleExportData = () => {
 const handleSettings = () => {
   // 设置逻辑
 }
+
+const handleSaveDraft = () => {
+  resumeStore.saveDraft()
+  ElMessage.success('草稿保存成功')
+}
+
+const handleLoadDraft = () => {
+  const draftTime = resumeStore.getDraftInfo()
+  if (draftTime) {
+    const timeStr = draftTime.toLocaleString()
+    ElMessageBox.confirm(`检测到上次保存的草稿（${timeStr}），是否恢复？`, '恢复草稿', {
+      confirmButtonText: '恢复',
+      cancelButtonText: '不恢复',
+      type: 'info'
+    }).then(() => {
+      resumeStore.loadFromStorage()
+      ElMessage.success('草稿已恢复')
+    }).catch(() => {})
+  }
+}
+
+onMounted(() => {
+  const draftTime = resumeStore.getDraftInfo()
+  if (draftTime) {
+    handleLoadDraft()
+  }
+})
 </script>
 
 <style scoped>

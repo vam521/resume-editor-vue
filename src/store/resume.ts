@@ -33,7 +33,8 @@ export const useResumeStore = defineStore('resume', () => {
         email: '',
         phone: '',
         location: '',
-        website: ''
+        website: '',
+        avatar: ''
       },
       order: 0
     },
@@ -228,6 +229,35 @@ export const useResumeStore = defineStore('resume', () => {
     }
   }
 
+  // 保存草稿（手动）
+  const saveDraft = () => {
+    saveToStorage()
+    return true
+  }
+
+  // 清除草稿
+  const clearDraft = () => {
+    try {
+      localStorage.removeItem(STORAGE_KEY)
+    } catch (error) {
+      console.error('清除草稿失败:', error)
+    }
+  }
+
+  // 获取草稿信息
+  const getDraftInfo = () => {
+    try {
+      const data = localStorage.getItem(STORAGE_KEY)
+      if (data) {
+        const parsed = JSON.parse(data)
+        return parsed.lastSaved ? new Date(parsed.lastSaved) : null
+      }
+    } catch (error) {
+      console.error('获取草稿信息失败:', error)
+    }
+    return null
+  }
+
   // 初始化时加载数据
   loadFromStorage()
 
@@ -250,6 +280,10 @@ export const useResumeStore = defineStore('resume', () => {
     reorderSections,
     resetResume,
     exportData,
-    importData
+    importData,
+    saveDraft,
+    clearDraft,
+    getDraftInfo,
+    loadFromStorage
   }
 })

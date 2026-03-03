@@ -103,8 +103,8 @@
                           v-model="item.dateRange"
                           type="monthrange"
                           range-separator="至"
-                          start-placeholder="开始日期"
-                          end-placeholder="结束日期"
+                          start-placeholder="开始月份"
+                          end-placeholder="结束月份"
                           value-format="YYYY-MM"
                         />
                       </el-form-item>
@@ -125,8 +125,8 @@
                           v-model="item.dateRange"
                           type="monthrange"
                           range-separator="至"
-                          start-placeholder="开始日期"
-                          end-placeholder="结束日期"
+                          start-placeholder="开始月份"
+                          end-placeholder="结束月份"
                           value-format="YYYY-MM"
                         />
                       </el-form-item>
@@ -147,8 +147,8 @@
                           v-model="item.dateRange"
                           type="monthrange"
                           range-separator="至"
-                          start-placeholder="开始日期"
-                          end-placeholder="结束日期"
+                          start-placeholder="开始月份"
+                          end-placeholder="结束月份"
                           value-format="YYYY-MM"
                         />
                       </el-form-item>

@@ -262,7 +262,7 @@ defineExpose({
 .modern-template .personal-info {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 24px;
   justify-content: flex-end;
   text-align: right;
 }

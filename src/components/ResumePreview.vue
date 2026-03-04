@@ -8,6 +8,7 @@
             <img v-if="personalInfo.avatar" :src="personalInfo.avatar" class="avatar" />
             <div class="info-content">
               <h1>{{ personalInfo.name || '姓名' }}</h1>
+              <div v-if="personalInfo.jobIntent" class="job-intent">{{ personalInfo.jobIntent }}</div>
               <div class="contact-info">
                 <span v-if="personalInfo.email">
                   <el-icon><Message /></el-icon>
@@ -107,6 +108,7 @@
         <div class="classic-header">
           <div class="classic-personal">
             <h1>{{ personalInfo.name || '姓名' }}</h1>
+            <div v-if="personalInfo.jobIntent" class="classic-job-intent">{{ personalInfo.jobIntent }}</div>
             <div class="classic-contact">
               <div v-if="personalInfo.email" class="contact-item">
                 <el-icon><Message /></el-icon>
@@ -291,6 +293,13 @@ defineExpose({
   font-weight: 700;
   color: #303133;
   letter-spacing: 1px;
+}
+
+.modern-template .job-intent {
+  color: #667eea;
+  font-size: 14px;
+  margin-bottom: 8px;
+  font-weight: 500;
 }
 
 .modern-template .contact-info {
@@ -479,6 +488,14 @@ defineExpose({
   font-size: 28px;
   color: #303133;
   letter-spacing: 1px;
+}
+
+.classic-template .classic-job-intent {
+  text-align: center;
+  color: #409eff;
+  font-size: 14px;
+  margin-bottom: 8px;
+  font-weight: 500;
 }
 
 .classic-template .classic-contact {

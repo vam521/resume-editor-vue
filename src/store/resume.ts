@@ -34,7 +34,8 @@ export const useResumeStore = defineStore('resume', () => {
         phone: '',
         location: '',
         website: '',
-        avatar: ''
+        avatar: '',
+        jobIntent: ''
       },
       order: 0
     },

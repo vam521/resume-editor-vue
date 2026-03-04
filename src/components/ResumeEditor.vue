@@ -77,6 +77,9 @@
                   <el-form-item label="个人网站">
                     <el-input v-model="section.content.website" placeholder="请输入个人网站或博客地址" />
                   </el-form-item>
+                  <el-form-item label="求职意向">
+                    <el-input v-model="section.content.jobIntent" placeholder="请输入求职意向，如：前端开发工程师" />
+                  </el-form-item>
                 </el-form>
               </div>
 

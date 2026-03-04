@@ -284,7 +284,7 @@
                 </el-button>
               </div>
 
-              <!-- 自我评价富文本编辑器 -->
+              <!-- 个人简介富文本编辑器 -->
               <div v-else-if="section.type === 'summary'" class="rich-text-editor">
                 <RichTextEditor v-model="section.content" />
               </div>
@@ -303,7 +303,7 @@
             <el-option label="工作经历" value="work" />
             <el-option label="项目经验" value="project" />
             <el-option label="技能专长" value="skill" />
-            <el-option label="自我评价" value="summary" />
+            <el-option label="个人简介" value="summary" />
             <el-option label="自定义模块" value="custom" />
           </el-select>
         </el-form-item>

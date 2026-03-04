@@ -39,38 +39,38 @@ export const useResumeStore = defineStore('resume', () => {
       order: 0
     },
     {
+      id: 'summary',
+      type: 'summary',
+      title: '个人简介',
+      content: '',
+      order: 1
+    },
+    {
       id: 'education',
       type: 'education',
       title: '教育背景',
       content: [],
-      order: 1
+      order: 2
     },
     {
       id: 'work',
       type: 'work',
       title: '工作经历',
       content: [],
-      order: 2
+      order: 3
     },
     {
       id: 'project',
       type: 'project',
       title: '项目经验',
       content: [],
-      order: 3
+      order: 4
     },
     {
       id: 'skill',
       type: 'skill',
       title: '技能专长',
       content: [],
-      order: 4
-    },
-    {
-      id: 'summary',
-      type: 'summary',
-      title: '自我评价',
-      content: '',
       order: 5
     }
   ])

@@ -129,7 +129,8 @@ const handleExport = async () => {
       logging: false,
       backgroundColor: '#ffffff',
       imageTimeout: 0,
-      removeContainer: true
+      removeContainer: true,
+      allowTaint: true
     })
 
     const dimensions = getPageDimensions()

@@ -566,11 +566,12 @@ defineExpose({
   margin-right: 6px;
   margin-bottom: 4px;
   border-radius: 4px;
-  background: linear-gradient(135deg, #667eea20 0%, #764ba220 100%);
+  background: #f0f5ff;
   color: #667eea;
-  border: none;
+  border: 1px solid #d0dfff;
   font-size: 11px;
   font-weight: 500;
+  padding: 2px 8px;
 }
 
 .modern-template .skill-group {
@@ -596,7 +597,7 @@ defineExpose({
 .modern-template .skill-tag {
   margin: 0;
   border-radius: 12px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: #667eea;
   color: white;
   border: none;
   padding: 2px 10px;
@@ -750,6 +751,15 @@ defineExpose({
   color: #1a3a5c;
 }
 
+.classic-template .tech-tag {
+  background: #f0f0f0;
+  border: 1px solid #ddd;
+  color: #1a3a5c;
+  padding: 2px 8px;
+  font-size: 11px;
+  border-radius: 3px;
+}
+
 .classic-template .skill-tags {
   display: flex;
   flex-wrap: wrap;
@@ -874,6 +884,11 @@ defineExpose({
   border: none;
   color: white;
   font-size: 11px;
+  padding: 4px 10px;
+}
+
+.creative-section-left .skill-tag span {
+  color: white !important;
 }
 
 .creative-section-right .education-item,
@@ -934,18 +949,31 @@ defineExpose({
   margin-top: 8px;
   padding-top: 8px;
   border-top: 1px dotted #dee2e6;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  align-items: center;
 }
 
 .creative-section-right .tech-label {
   color: #636e72;
   font-size: 12px;
   font-weight: 600;
+  margin-right: 4px;
 }
 
 .creative-section-right .tech-tag {
-  background: linear-gradient(135deg, #ff6b6b 0%, #feca57 100%);
+  display: inline-block;
+  background: #ff8787;
   border: none;
   color: white;
+  padding: 2px 8px;
+  font-size: 11px;
+  border-radius: 3px;
+}
+
+.creative-section-right .tech-tag .el-tag__content {
+  color: white !important;
 }
 
 /* 响应式设计 */

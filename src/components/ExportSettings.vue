@@ -130,7 +130,16 @@ const handleExport = async () => {
       backgroundColor: '#ffffff',
       imageTimeout: 0,
       removeContainer: true,
-      allowTaint: true
+      allowTaint: true,
+      onclone: (clonedDoc) => {
+        const tags = clonedDoc.querySelectorAll('.el-tag')
+        tags.forEach((tag) => {
+          const content = tag.querySelector('.el-tag__content')
+          if (content) {
+            (content as HTMLElement).style.color = getComputedStyle(tag).color
+          }
+        })
+      }
     })
 
     const dimensions = getPageDimensions()

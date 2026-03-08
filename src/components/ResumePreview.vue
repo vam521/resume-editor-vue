@@ -69,14 +69,13 @@
                   <div v-if="project.description" class="project-description" v-html="project.description" />
                   <div v-if="project.technologies && project.technologies.length" class="project-technologies">
                     <span class="tech-label">技术栈：</span>
-                    <el-tag
+                    <span
                       v-for="(tech, techIndex) in project.technologies"
                       :key="techIndex"
-                      size="small"
                       class="tech-tag"
                     >
                       {{ tech }}
-                    </el-tag>
+                    </span>
                   </div>
                 </div>
               </div>
@@ -85,14 +84,13 @@
                 <div v-for="(skillGroup, index) in section.content" :key="index" class="skill-group">
                   <h3>{{ skillGroup.category }}</h3>
                   <div class="skill-tags">
-                    <el-tag
+                    <span
                       v-for="(skill, skillIndex) in skillGroup.skills"
                       :key="skillIndex"
-                      size="small"
                       class="skill-tag"
                     >
                       {{ skill }}
-                    </el-tag>
+                    </span>
                   </div>
                 </div>
               </div>
@@ -170,14 +168,13 @@
                   <div v-if="project.description" class="classic-item-description" v-html="project.description" />
                   <div v-if="project.technologies && project.technologies.length" class="project-technologies">
                     <span class="tech-label">技术栈：</span>
-                    <el-tag
+                    <span
                       v-for="(tech, techIndex) in project.technologies"
                       :key="techIndex"
-                      size="small"
                       class="tech-tag"
                     >
                       {{ tech }}
-                    </el-tag>
+                    </span>
                   </div>
                 </div>
               </div>
@@ -186,14 +183,13 @@
                 <div v-for="(skillGroup, index) in section.content" :key="index" class="classic-item">
                   <div class="classic-item-subtitle">{{ skillGroup.category }}</div>
                   <div class="skill-tags">
-                    <el-tag
+                    <span
                       v-for="(skill, skillIndex) in skillGroup.skills"
                       :key="skillIndex"
-                      size="small"
                       class="skill-tag"
                     >
                       {{ skill }}
-                    </el-tag>
+                    </span>
                   </div>
                 </div>
               </div>
@@ -238,14 +234,13 @@
                 <div v-for="(skillGroup, index) in section.content" :key="index" class="skill-group">
                   <h3>{{ skillGroup.category }}</h3>
                   <div class="skill-tags">
-                    <el-tag
+                    <span
                       v-for="(skill, skillIndex) in skillGroup.skills"
                       :key="skillIndex"
-                      size="small"
                       class="skill-tag"
                     >
                       {{ skill }}
-                    </el-tag>
+                    </span>
                   </div>
                 </div>
               </template>
@@ -291,14 +286,13 @@
                   <div v-if="project.description" class="project-description" v-html="project.description" />
                   <div v-if="project.technologies && project.technologies.length" class="project-technologies">
                     <span class="tech-label">技术栈：</span>
-                    <el-tag
+                    <span
                       v-for="(tech, techIndex) in project.technologies"
                       :key="techIndex"
-                      size="small"
                       class="tech-tag"
                     >
                       {{ tech }}
-                    </el-tag>
+                    </span>
                   </div>
                 </div>
               </template>
@@ -970,10 +964,6 @@ defineExpose({
   padding: 2px 8px;
   font-size: 11px;
   border-radius: 3px;
-}
-
-.creative-section-right .tech-tag .el-tag__content {
-  color: white !important;
 }
 
 /* 响应式设计 */

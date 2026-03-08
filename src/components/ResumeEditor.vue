@@ -365,7 +365,7 @@
     </el-dialog>
 
     <!-- AI 设置对话框 -->
-    <AISettings ref="aiSettingsRef" />
+    <AISettings :visible="showAISettings" @update:modelValue="showAISettings = $event" />
   </div>
 </template>
 
@@ -386,11 +386,10 @@ const aiStore = useAISettingsStore()
 const { settings: aiSettings } = storeToRefs(aiStore)
 const { enhance } = useAIEnhance()
 
-const aiSettingsRef = ref()
 const enhancing = ref(false)
 
 const openAISettings = () => {
-  aiSettingsRef.value?.open()
+  showAISettings.value = true
 }
 
 const stripHtml = (html: string): string => {
@@ -462,6 +461,7 @@ const sortedSections = computed({
 const dragMode = ref(false)
 const collapsedSections = ref<Record<string, boolean>>({})
 const showAddSectionDialog = ref(false)
+const showAISettings = ref(false)
 const newSection = reactive({
   type: 'education' as ResumeSection['type'],
   title: ''

@@ -1,6 +1,7 @@
 <template>
   <el-dialog
-    v-model="dialogVisible"
+    :model-value="visible"
+    @update:model-value="$emit('update:modelValue', $event)"
     title="AI 润色设置"
     width="500px"
     :close-on-click-modal="false"
@@ -61,7 +62,7 @@
     </el-form>
 
     <template #footer>
-      <el-button @click="dialogVisible = false">取消</el-button>
+      <el-button @click="emit('update:modelValue', false)">取消</el-button>
       <el-button type="primary" @click="saveSettings">保存</el-button>
     </template>
   </el-dialog>
@@ -74,15 +75,32 @@ import { storeToRefs } from 'pinia'
 import { ElMessage } from 'element-plus'
 import { Link } from '@element-plus/icons-vue'
 
+const props = defineProps<{
+  visible: boolean
+}>()
+
+const emit = defineEmits<{
+  'update:modelValue': [value: boolean]
+}>()
+
 const aiStore = useAISettingsStore()
 const { settings } = storeToRefs(aiStore)
 
-const dialogVisible = ref(false)
 const testing = ref(false)
 
-const localSettings = ref({ ...settings.value })
+const localSettings = ref({
+  provider: 'openai' as 'openai' | 'anthropic' | 'custom',
+  apiKey: '',
+  baseUrl: 'https://api.openai.com/v1',
+  model: 'gpt-3.5-turbo',
+  enabled: false
+})
 
-watch(dialogVisible, (val) => {
+watch(() => settings.value, (newSettings) => {
+  localSettings.value = { ...newSettings }
+}, { immediate: true })
+
+watch(() => props.visible, (val) => {
   if (val) {
     localSettings.value = { ...settings.value }
   }
@@ -108,18 +126,9 @@ const testConnection = async () => {
 
 const saveSettings = () => {
   aiStore.updateSettings(localSettings.value)
-  dialogVisible.value = false
+  emit('update:modelValue', false)
   ElMessage.success('AI 设置已保存')
 }
-
-const open = () => {
-  localSettings.value = { ...settings.value }
-  dialogVisible.value = true
-}
-
-defineExpose({
-  open
-})
 </script>
 
 <style scoped>

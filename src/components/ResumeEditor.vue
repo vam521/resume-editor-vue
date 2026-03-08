@@ -3,6 +3,9 @@
     <div class="editor-header">
       <h3>简历内容编辑</h3>
       <div class="header-actions">
+        <el-button size="small" :icon="MagicStick" @click="openAISettings">
+          AI 设置
+        </el-button>
         <el-button size="small" :icon="Document" @click="fillSampleData">
           填充示例
         </el-button>
@@ -203,7 +206,20 @@
                         />
                       </el-form-item>
                       <el-form-item label="工作描述">
-                        <RichTextEditor v-model="item.description" />
+                        <div class="enhance-toolbar">
+                          <RichTextEditor v-model="item.description" />
+                          <el-button 
+                            v-if="aiSettings.enabled" 
+                            size="small" 
+                            type="primary" 
+                            :icon="MagicStick" 
+                            @click="enhanceWorkDescription(item)"
+                            :loading="enhancing"
+                            class="enhance-btn"
+                          >
+                            AI 润色
+                          </el-button>
+                        </div>
                       </el-form-item>
                     </div>
 
@@ -225,7 +241,20 @@
                         />
                       </el-form-item>
                       <el-form-item label="项目描述">
-                        <RichTextEditor v-model="item.description" />
+                        <div class="enhance-toolbar">
+                          <RichTextEditor v-model="item.description" />
+                          <el-button 
+                            v-if="aiSettings.enabled" 
+                            size="small" 
+                            type="primary" 
+                            :icon="MagicStick" 
+                            @click="enhanceProjectDescription(item)"
+                            :loading="enhancing"
+                            class="enhance-btn"
+                          >
+                            AI 润色
+                          </el-button>
+                        </div>
                       </el-form-item>
                       <el-form-item label="技术栈">
                         <el-tag
@@ -289,6 +318,19 @@
 
               <!-- 个人简介富文本编辑器 -->
               <div v-else-if="section.type === 'summary'" class="rich-text-editor">
+                <div class="ai-enhance-header">
+                  <span>个人简介</span>
+                  <el-button 
+                    v-if="aiSettings.enabled" 
+                    size="small" 
+                    type="primary" 
+                    :icon="MagicStick" 
+                    @click="enhanceSummary(section)"
+                    :loading="enhancing"
+                  >
+                    AI 润色
+                  </el-button>
+                </div>
                 <RichTextEditor v-model="section.content" />
               </div>
             </div>
@@ -321,18 +363,93 @@
         </span>
       </template>
     </el-dialog>
+
+    <!-- AI 设置对话框 -->
+    <AISettings ref="aiSettingsRef" />
   </div>
 </template>
 
 <script setup lang="ts">
 import { computed, ref, reactive, nextTick } from 'vue'
-import { Plus, Sort, Delete, Rank, ArrowDown, ArrowRight, Document } from '@element-plus/icons-vue'
+import { Plus, Sort, Delete, Rank, ArrowDown, ArrowRight, Document, MagicStick } from '@element-plus/icons-vue'
 import draggable from 'vuedraggable'
 import { useResumeStore, type ResumeSection } from '@/store/resume'
+import { useAISettingsStore } from '@/store/aiSettings'
+import { storeToRefs } from 'pinia'
 import RichTextEditor from './RichTextEditor.vue'
+import AISettings from './AISettings.vue'
+import { useAIEnhance } from '@/utils/aiEnhance'
 import { ElMessage } from 'element-plus'
 
 const resumeStore = useResumeStore()
+const aiStore = useAISettingsStore()
+const { settings: aiSettings } = storeToRefs(aiStore)
+const { enhance } = useAIEnhance()
+
+const aiSettingsRef = ref()
+const enhancing = ref(false)
+
+const openAISettings = () => {
+  aiSettingsRef.value.dialogVisible = true
+}
+
+const stripHtml = (html: string): string => {
+  const tmp = document.createElement('div')
+  tmp.innerHTML = html
+  return tmp.textContent || tmp.innerText || ''
+}
+
+const enhanceText = async (text: string, type: string, context?: string): Promise<string> => {
+  if (!aiSettings.value.enabled || !aiSettings.value.apiKey) {
+    ElMessage.warning('请先在 AI 设置中配置 API Key')
+    return text
+  }
+
+  enhancing.value = true
+  try {
+    const plainText = stripHtml(text)
+    const result = await enhance({
+      type: type as any,
+      content: plainText,
+      context
+    })
+    return `<p>${result.replace(/\n/g, '</p><p>')}</p>`
+  } catch (error: any) {
+    ElMessage.error(error.message || '润色失败')
+    return text
+  } finally {
+    enhancing.value = false
+  }
+}
+
+const enhanceSummary = async (section: any) => {
+  if (!section.content) {
+    ElMessage.warning('请先填写个人简介内容')
+    return
+  }
+  const result = await enhanceText(section.content, 'polish')
+  section.content = result
+}
+
+const enhanceWorkDescription = async (item: any) => {
+  if (!item.description) {
+    ElMessage.warning('请先填写工作描述')
+    return
+  }
+  const context = `${item.position}@${item.company}`
+  const result = await enhanceText(item.description, 'polish', context)
+  item.description = result
+}
+
+const enhanceProjectDescription = async (item: any) => {
+  if (!item.description) {
+    ElMessage.warning('请先填写项目描述')
+    return
+  }
+  const context = item.role ? `${item.role} - ${item.name}` : item.name
+  const result = await enhanceText(item.description, 'polish', context)
+  item.description = result
+}
 
 const sortedSections = computed({
   get: () => resumeStore.sortedSections,
@@ -1014,5 +1131,33 @@ const fillSampleData = () => {
 .empty-state p {
   margin: 0;
   font-size: 14px;
+}
+
+.ai-enhance-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.ai-enhance-header span {
+  font-size: 14px;
+  color: #606266;
+}
+
+.enhance-toolbar {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  width: 100%;
+}
+
+.enhance-toolbar .rich-text-editor {
+  flex: 1;
+}
+
+.enhance-btn {
+  flex-shrink: 0;
+  margin-top: 0;
 }
 </style>

@@ -112,8 +112,13 @@ const saveSettings = () => {
   ElMessage.success('AI 设置已保存')
 }
 
+const open = () => {
+  localSettings.value = { ...settings.value }
+  dialogVisible.value = true
+}
+
 defineExpose({
-  dialogVisible
+  open
 })
 </script>
 

@@ -390,7 +390,7 @@ const aiSettingsRef = ref()
 const enhancing = ref(false)
 
 const openAISettings = () => {
-  aiSettingsRef.value.dialogVisible = true
+  aiSettingsRef.value?.open()
 }
 
 const stripHtml = (html: string): string => {

@@ -1,5 +1,7 @@
 # ResumeAI - Smart Resume Editor
 
+[中文版](./README.md)
+
 A powerful online resume editor with multi-template support, real-time preview, and PDF export.
 
 ## Features

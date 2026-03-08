@@ -1,5 +1,7 @@
 # ResumeAI - 智能简历编辑器
 
+[English Version](./README-en.md)
+
 一款功能强大的在线简历编辑器，支持多模板、实时预览、PDF导出等功能。
 
 ## 功能特性

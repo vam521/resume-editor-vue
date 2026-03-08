@@ -387,8 +387,8 @@ defineExpose({
 .modern-template .modern-header {
   padding-bottom: 16px;
   margin-bottom: 20px;
-  border-bottom: 2px solid #00d2ff;
-  background: linear-gradient(135deg, #00d2ff08 0%, #3a7bd5100 100%);
+  border-bottom: 2px solid #667eea;
+  background: linear-gradient(135deg, #667eea08 0%, #764ba2100 100%);
   padding: 16px 24px;
   margin: -30px -30px 20px -30px;
   border-radius: 4px 4px 0 0;
@@ -429,7 +429,7 @@ defineExpose({
 }
 
 .modern-template .job-intent {
-  color: #00d2ff;
+  color: #667eea;
   font-size: 14px;
   margin-bottom: 8px;
   font-weight: 500;
@@ -453,7 +453,7 @@ defineExpose({
 }
 
 .modern-template .contact-info .el-icon {
-  color: #00d2ff;
+  color: #667eea;
   font-weight: 600;
 }
 
@@ -464,7 +464,7 @@ defineExpose({
 .modern-template .section-title {
   font-size: 15px;
   font-weight: 600;
-  color: #00d2ff;
+  color: #667eea;
   margin: 0 0 12px 0;
   padding-bottom: 6px;
   border-bottom: 1px solid #e8e8e8;
@@ -480,7 +480,7 @@ defineExpose({
   transform: translateY(-50%);
   width: 3px;
   height: 16px;
-  background: linear-gradient(135deg, #00d2ff 0%, #3a7bd5 100%);
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   border-radius: 2px;
 }
 

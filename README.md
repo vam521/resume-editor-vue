@@ -1,5 +1,100 @@
-# Vue 3 + TypeScript + Vite
+# ResumeAI - 智能简历编辑器
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+一款功能强大的在线简历编辑器，支持多模板、实时预览、PDF导出等功能。
 
-Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).
+## 功能特性
+
+- 📝 **多板块编辑** - 支持个人信息、教育经历、工作经历、项目经验、技能证书、自我评价等模块
+- 🎨 **多模板风格** - 内置现代科技风、经典金融风、创意设计风三种简历模板
+- 👁️ **实时预览** - 所见即所得的预览效果
+- 📄 **PDF导出** - 支持将简历导出为 PDF 格式
+- 💾 **数据持久化** - 支持导入导出简历数据
+- ✨ **拖拽排序** - 支持工作经历、项目经验等模块的拖拽排序
+- 📱 **响应式设计** - 适配桌面端和移动端
+
+## 技术栈
+
+- **前端框架**: Vue 3 (Composition API)
+- **语言**: TypeScript
+- **构建工具**: Vite
+- **UI 组件库**: Element Plus
+- **富文本编辑器**: TipTap
+- **状态管理**: Pinia
+- **PDF 生成**: html2canvas + jsPDF
+- **拖拽排序**: SortableJS
+
+## 项目结构
+
+```
+src/
+├── components/
+│   ├── ResumeEditor.vue      # 简历编辑器核心组件
+│   ├── ResumePreview.vue     # 简历预览组件
+│   ├── ExportSettings.vue    # 导出设置组件
+│   ├── TemplateLibrary.vue   # 模板库组件
+│   └── RichTextEditor.vue    # 富文本编辑器组件
+├── views/
+│   └── HomeView.vue          # 主页面视图
+├── store/
+│   └── resume.ts             # 简历状态管理
+├── App.vue
+├── main.ts
+└── style.css
+```
+
+## 快速开始
+
+### 安装依赖
+
+```bash
+npm install
+```
+
+### 开发模式
+
+```bash
+npm run dev
+```
+
+### 构建生产版本
+
+```bash
+npm run build
+```
+
+### 预览生产版本
+
+```bash
+npm run preview
+```
+
+## 使用说明
+
+1. **选择模板** - 从模板库中选择喜欢的简历风格
+2. **填写信息** - 按照模块提示填写个人信息和经历
+3. **预览效果** - 实时查看简历预览效果
+4. **导出PDF** - 调整导出设置后导出为 PDF 文件
+
+## 简历模块
+
+- 👤 个人信息 - 姓名、求职意向、联系方式等
+- 🎓 教育经历 - 学校、学历、入学时间等
+- 💼 工作经历 - 公司、职位、工作时间、工作内容等
+- 💡 项目经验 - 项目名称、角色、技术栈、项目描述等
+- 🏆 技能证书 - 技能分类、技能标签、证书信息
+- 📝 个人简介 - 自我评价/个人简介
+
+## 模板预览
+
+### 现代科技风
+紫色主题配色，现代简洁，适合技术岗位
+
+### 经典金融风
+深蓝色调，稳重专业，适合金融/商务岗位
+
+### 创意设计风
+彩色渐变背景，活泼有创意，适合设计/创意岗位
+
+## 许可证
+
+MIT License
